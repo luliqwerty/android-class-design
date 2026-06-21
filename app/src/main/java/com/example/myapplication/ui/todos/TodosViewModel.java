@@ -74,4 +74,8 @@ public class TodosViewModel extends AndroidViewModel {
     public void insertTodo(TodoItem item) {
         repository.insertTodo(item);
     }
+
+    public void completeTodo(TodoItem item) {
+        repository.completeTodo(item);
+    }
 }

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -94,13 +95,12 @@ public class AddTodoDialogFragment extends DialogFragment {
                     .setOnClickListener(v -> saveTodo());
         });
 
+        setupViews();
+
         return dialog;
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
+    private void setupViews() {
         selectedCategoryId = categoryId > 0 ? categoryId : 0;
 
         CategoriesViewModel categoriesViewModel = new ViewModelProvider(requireActivity())
@@ -152,8 +152,7 @@ public class AddTodoDialogFragment extends DialogFragment {
             }
         }
 
-        binding.editDueDate.setOnClickListener(v -> showDatePicker());
-        binding.editDueDate.setKeyListener(null);
+        binding.cardDueDate.setOnClickListener(v -> showDatePicker());
 
         binding.switchRecurring.setOnCheckedChangeListener((buttonView, isChecked) -> {
             binding.layoutRecurrenceInterval.setVisibility(

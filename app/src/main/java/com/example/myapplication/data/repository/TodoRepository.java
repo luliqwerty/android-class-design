@@ -86,4 +86,21 @@ public class TodoRepository {
     public void deleteTodoById(long id) {
         AppDatabase.databaseWriteExecutor.execute(() -> itemDao.deleteById(id));
     }
+
+    public void completeTodo(TodoItem item) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            item.setCompleted(true);
+            itemDao.update(item);
+
+            if (item.isRecurring() && item.getDueDate() != null && item.getRecurrenceIntervalDays() > 0) {
+                TodoItem next = new TodoItem(item.getTitle(), item.getCategoryId());
+                next.setDueDate(item.getDueDate() + (long) item.getRecurrenceIntervalDays() * 24 * 60 * 60 * 1000);
+                next.setRecurring(true);
+                next.setRecurrenceIntervalDays(item.getRecurrenceIntervalDays());
+                next.setImportant(item.isImportant());
+                next.setMyDay(item.isMyDay());
+                itemDao.insert(next);
+            }
+        });
+    }
 }

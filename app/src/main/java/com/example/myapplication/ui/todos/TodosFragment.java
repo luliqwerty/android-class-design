@@ -100,8 +100,12 @@ public class TodosFragment extends Fragment implements TodosAdapter.OnItemClickL
 
     @Override
     public void onCompleteToggle(TodoItem item, boolean completed) {
-        item.setCompleted(completed);
-        viewModel.updateTodo(item);
+        if (completed) {
+            viewModel.completeTodo(item);
+        } else {
+            item.setCompleted(false);
+            viewModel.updateTodo(item);
+        }
     }
 
     @Override
