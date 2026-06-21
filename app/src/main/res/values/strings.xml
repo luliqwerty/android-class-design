@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My TODO</string>
+
+    <string name="shortcuts_header">快捷入口</string>
+    <string name="categories_header">我的分类</string>
+    <string name="my_day_title">我的一天</string>
+    <string name="important_title">重要</string>
+    <string name="all_tasks_title">全部待办</string>
+
+    <string name="todos_title">待办</string>
+    <string name="filter_all">全部</string>
+    <string name="filter_incomplete">未完成</string>
+    <string name="no_todos">暂无待办</string>
+
+    <string name="add_todo_title">添加待办</string>
+    <string name="edit_todo_title">编辑待办</string>
+    <string name="title_hint">标题</string>
+    <string name="due_date_hint">截止时间</string>
+    <string name="category_hint">选择分类</string>
+    <string name="recurring_switch">循环任务</string>
+    <string name="recurrence_interval_hint">每几天循环一次</string>
+    <string name="important_switch">标记为重要</string>
+    <string name="my_day_switch">加入我的一天</string>
+    <string name="title_required">标题不能为空</string>
+    <string name="recurring_label">&#x1f503; 循环</string>
+
+    <string name="add_category_title">添加分类</string>
+    <string name="category_name_hint">分类名称</string>
+
+    <string name="save">保存</string>
+    <string name="cancel">取消</string>
+
+    <string name="action_settings">设置</string>
+</resources>

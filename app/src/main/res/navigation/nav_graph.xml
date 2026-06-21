@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/CategoriesFragment">
+
+    <fragment
+        android:id="@+id/CategoriesFragment"
+        android:name="com.example.myapplication.ui.categories.CategoriesFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_categories">
+
+        <action
+            android:id="@+id/action_categories_to_todos"
+            app:destination="@id/TodosFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/TodosFragment"
+        android:name="com.example.myapplication.ui.todos.TodosFragment"
+        android:label="@string/todos_title"
+        tools:layout="@layout/fragment_todos">
+
+        <argument
+            android:name="categoryId"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+
+</navigation>
