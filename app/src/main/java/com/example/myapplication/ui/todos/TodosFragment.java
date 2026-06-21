@@ -95,6 +95,9 @@ public class TodosFragment extends Fragment implements TodosAdapter.OnItemClickL
         dialog.setOnTodoSavedListener(todo -> {
             viewModel.updateTodo(todo);
         });
+        dialog.setOnTodoDeletedListener(todo -> {
+            viewModel.deleteTodo(todo);
+        });
         dialog.show(getParentFragmentManager(), "EditTodoDialog");
     }
 

@@ -43,7 +43,12 @@ public class AddTodoDialogFragment extends DialogFragment {
         void onTodoSaved(TodoItem todo);
     }
 
+    public interface OnTodoDeletedListener {
+        void onTodoDeleted(TodoItem todo);
+    }
+
     private OnTodoSavedListener listener;
+    private OnTodoDeletedListener deleteListener;
 
     public static AddTodoDialogFragment newInstance(long categoryId, @Nullable TodoItem item) {
         AddTodoDialogFragment fragment = new AddTodoDialogFragment();
@@ -58,6 +63,10 @@ public class AddTodoDialogFragment extends DialogFragment {
 
     public void setOnTodoSavedListener(OnTodoSavedListener listener) {
         this.listener = listener;
+    }
+
+    public void setOnTodoDeletedListener(OnTodoDeletedListener listener) {
+        this.deleteListener = listener;
     }
 
     @Override
@@ -150,6 +159,20 @@ public class AddTodoDialogFragment extends DialogFragment {
             if (existingItem.isRecurring()) {
                 binding.layoutRecurrenceInterval.setVisibility(View.VISIBLE);
             }
+
+            binding.btnDelete.setVisibility(View.VISIBLE);
+            binding.btnDelete.setOnClickListener(v -> {
+                new AlertDialog.Builder(requireContext())
+                        .setMessage(R.string.confirm_delete)
+                        .setPositiveButton(R.string.delete, (dialog, which) -> {
+                            if (deleteListener != null) {
+                                deleteListener.onTodoDeleted(existingItem);
+                            }
+                            dismiss();
+                        })
+                        .setNegativeButton(R.string.cancel, null)
+                        .show();
+            });
         }
 
         binding.cardDueDate.setOnClickListener(v -> showDatePicker());
